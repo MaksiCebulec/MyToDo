@@ -28,7 +28,13 @@ app.set('views', path.join(__dirname, 'views'));
 app.get('/mytodo', async (req, res) => {
     const tasks = await Task.find({});
     res.render('index.ejs', { tasks });
-})
+});
+
+app.get('/mytodo/:id', async (req, res) => {
+    const { id } = req.params;
+    const task = await Task.findById(id);
+    res.render('show.ejs', { task });
+});
 
 app.listen(3000, () => {
     console.log('Listening on 3000');

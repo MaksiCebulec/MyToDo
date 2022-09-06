@@ -14,9 +14,10 @@
     <ul>
         <% for(task of tasks){ %>
             <li>
-                <b>
-                    <%= task.title %>
-                </b>
+                <a href="/mytodo/<%= task._id %> "><b>
+                        <%= task.title %>
+                    </b></a>
+
                 <% if(task.description){ %>
                     <ul>
                         <li>
