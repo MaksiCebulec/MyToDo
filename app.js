@@ -30,9 +30,8 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 app.get('/mytodo', async (req, res) => {
-    const newTask = new Task({ title: 'Clean the room', description: 'I have to clean the room today!!!' });
-    await newTask.save();
-    console.log(newTask);
+    const task = await Task.find({});
+    console.log(task);
     res.render('index.ejs');
 })
 
