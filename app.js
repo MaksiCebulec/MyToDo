@@ -21,18 +21,13 @@ const TasksSchema = new mongoose.Schema({
 
 const Task = mongoose.model('Task', TasksSchema);
 
-
-
-
-
 app.set('view engine', 'views');
 app.set('views', path.join(__dirname, 'views'));
 
 
 app.get('/mytodo', async (req, res) => {
-    const task = await Task.find({});
-    console.log(task);
-    res.render('index.ejs');
+    const tasks = await Task.find({});
+    res.render('index.ejs', { tasks });
 })
 
 app.listen(3000, () => {
