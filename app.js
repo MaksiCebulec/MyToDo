@@ -1,10 +1,13 @@
 const express = require('express');
-
+const path = require('path');
 const app = express();
+
+app.set('view engine', 'views');
+app.set('views', path.join(__dirname, 'views'));
 
 
 app.get('/mytodo', (req, res) => {
-    res.send('My to do list')
+    res.render('index.ejs');
 })
 
 app.listen(3000, () => {
