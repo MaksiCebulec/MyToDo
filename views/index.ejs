@@ -6,32 +6,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My To Do List</title>
+    <style>
+        section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        li {
+            margin: 0.6rem;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>My To Do List</h1>
+    <section>
+        <main>
 
-    <a href="/mytodo/new">Add new Task</a>
 
-    <ul>
-        <% for(task of tasks){ %>
-            <li>
-                <a href="/mytodo/<%= task._id %> "><b>
-                        <%= task.title %>
-                    </b></a>
+            <h1>My To Do List</h1>
 
-                <% if(task.description){ %>
-                    <ul>
-                        <li>
-                            <%= task.description %>
-                        </li>
-                    </ul>
+            <a href="/mytodo/new">Add new Task</a>
 
+            <ul>
+                <% for(task of tasks){ %>
+                    <li>
+                        <a href="/mytodo/<%= task._id %> "><b>
+                                <%= task.title %>
+                            </b></a>
+
+                        <% if(task.description){ %>
+                            <ul>
+                                <li>
+                                    <%= task.description %>
+                                </li>
+                            </ul>
+
+                            <% } %>
+                    </li>
                     <% } %>
-            </li>
-            <% } %>
-    </ul>
-
+            </ul>
+        </main>
+    </section>
 </body>
 
 

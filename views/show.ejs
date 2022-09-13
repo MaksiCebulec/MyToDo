@@ -6,23 +6,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Show</title>
+    <style>
+        section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        li {
+            margin: 0.6rem;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>
-        <%= task.title %>
-    </h1>
-    <% if(task.description){ %>
-        <p>
-            <%= task.description %>
-        </p>
-        <% } %>
-            <a href="/mytodo/<%= task._id %>/edit">Edit Task</a>
-            <a href="/mytodo">All Tasks</a>
+    <section>
+        <main>
+            <h1>
+                <%= task.title %>
+            </h1>
+            <% if(task.description){ %>
+                <p>
+                    <%= task.description %>
+                </p>
+                <% } %>
+                    <a href="/mytodo/<%= task._id %>/edit">Edit Task</a>
+                    <a href="/mytodo">All Tasks</a>
 
-            <form action="/mytodo/<%= task._id %>?_method=DELETE" method="POST">
-                <button>Delete Task</button>
-            </form>
+                    <form action="/mytodo/<%= task._id %>?_method=DELETE" method="POST">
+                        <button>Delete Task</button>
+                    </form>
+        </main>
+    </section>
+
 
 </body>
 
