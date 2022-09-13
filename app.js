@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const methodOverride = require('method-override');
 const app = express();
 
 
@@ -25,6 +26,7 @@ app.set('view engine', 'views');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.urlencoded());
+app.use(methodOverride('_method'));
 
 
 app.get('/mytodo', async (req, res) => {
@@ -42,11 +44,25 @@ app.get('/mytodo/:id', async (req, res) => {
     res.render('show.ejs', { task });
 });
 
+app.get('/mytodo/:id/edit', async (req, res) => {
+    const { id } = req.params;
+    const task = await Task.findById(id);
+    res.render('edit.ejs', { task });
+});
+
+app.put('/mytodo/:id', async (req, res) => {
+    const { id } = req.params;
+    const task = await Task.findByIdAndUpdate(id, { ...req.body.task });
+    res.redirect(`/mytodo/${id}`);
+})
+
 app.post('/mytodo', async (req, res) => {
     const newTask = Task({ ...req.body.task });
     await newTask.save();
     res.redirect(`/mytodo/${newTask._id}`);
 });
+
+
 
 
 
