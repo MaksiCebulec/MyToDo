@@ -56,6 +56,12 @@ app.put('/mytodo/:id', async (req, res) => {
     res.redirect(`/mytodo/${id}`);
 })
 
+app.delete('/mytodo/:id', async (req, res) => {
+    const { id } = req.params;
+    const task = await Task.findByIdAndDelete(id);
+    res.redirect('/mytodo')
+});
+
 app.post('/mytodo', async (req, res) => {
     const newTask = Task({ ...req.body.task });
     await newTask.save();

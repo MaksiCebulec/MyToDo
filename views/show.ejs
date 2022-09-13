@@ -20,6 +20,10 @@
             <a href="/mytodo/<%= task._id %>/edit">Edit Task</a>
             <a href="/mytodo">All Tasks</a>
 
+            <form action="/mytodo/<%= task._id %>?_method=DELETE" method="POST">
+                <button>Delete Task</button>
+            </form>
+
 </body>
 
 </html>
