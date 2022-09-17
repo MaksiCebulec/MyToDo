@@ -31,15 +31,11 @@ app.use(express.urlencoded());
 app.use(methodOverride('_method'));
 
 
-app.get('/mytodo', async (req, res, next) => {
-    try {
-        const tasks = await Task.find({});
-        res.render('index.ejs', { tasks });
-    } catch (e) {
-        next(e);
-    }
+app.get('/mytodo', catchAsync(async (req, res) => {
+    const tasks = await Task.find({});
+    res.render('index.ejs', { tasks });
 
-});
+}));
 
 app.get('/mytodo/new', (req, res) => {
     res.render('new.ejs');
